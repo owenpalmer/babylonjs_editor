@@ -73,3 +73,29 @@ engine.runRenderLoop(() => {
     engine.resize();
     scene.render();
 });
+
+jQuery(document).ready(function($) {
+    mousedown = false;
+    $(".add_object").on("mousedown", function(e){
+        mousedown = true;
+        current_target = e.target.parentNode;
+        console.log(e.target);
+        console.log(current_target);
+        $(e.target.parentNode).css("position", "absolute");
+    });
+
+    $(document).on("mousemove", function(e){
+        if(!mousedown) return;
+        $(current_target).css("left", e.pageX + "px");
+        $(current_target).css("top", e.pageY + "px");
+        $(current_target).css("z-index", "99999");
+        // console.log(e.pageX, e.pageY);
+    });
+
+    $(document).on("mouseup", function(e){
+        mousedown = false;
+        $(current_target).css("position", "static");
+        $(current_target).css("left", "0");
+        $(current_target).css("top", "0");
+    });
+});
