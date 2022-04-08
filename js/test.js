@@ -15,10 +15,13 @@ function makeScene() {
     gizmoman = new BABYLON.GizmoManager(scene);
     gizmoman.positionGizmoEnabled = true;
     gizmoman.attachableMeshes = [];
+    gizmoman.onAttachedToMeshObservable.add((mesh) => {
+        console.log(mesh.name);
+    });
 
     createViewportGrid(scene);
 
-    const light = new BABYLON.HemisphericLight("thelight", new BABYLON.Vector3(0,0,0), scene);
+    const light = new BABYLON.DirectionalLight("thelight", new BABYLON.Vector3(-1,-1,0), scene);
 
     const mat = new BABYLON.StandardMaterial("themat", scene);
     mat.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
@@ -43,7 +46,27 @@ jQuery(document).ready(function($) {
             createCube();
         }
         if(object_slug == "cylinder"){
-            createSphere();
+            createCylinder();
+        }
+    });
+
+    $("#gizmo_options_selectable").on("click", function(e){
+        gizmo_type = e.target.dataset.gizmo_type;
+        console.log(gizmo_type);
+        if(gizmo_type  == "move"){
+            gizmoman.positionGizmoEnabled = true;
+            gizmoman.rotationGizmoEnabled = false;
+            gizmoman.scaleGizmoEnabled = false;
+        }
+        if(gizmo_type  == "rotate"){
+            gizmoman.positionGizmoEnabled = false;
+            gizmoman.rotationGizmoEnabled = true;
+            gizmoman.scaleGizmoEnabled = false;
+        }
+        if(gizmo_type  == "scale"){
+            gizmoman.positionGizmoEnabled = false;
+            gizmoman.rotationGizmoEnabled = false;
+            gizmoman.scaleGizmoEnabled = true;
         }
     });
 
@@ -53,11 +76,19 @@ jQuery(document).ready(function($) {
 function createSphere() {
     const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
     gizmoman.attachableMeshes.push(sphere);
+    gizmoman.attachToMesh(sphere);
 }
 
 function createCube() {
     const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
     gizmoman.attachableMeshes.push(box);
+    gizmoman.attachToMesh(box);
+}
+
+function createCylinder() {
+    const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {}, scene);
+    gizmoman.attachableMeshes.push(cylinder);
+    gizmoman.attachToMesh(cylinder);
 }
 
 function createViewportGrid(scene) {
