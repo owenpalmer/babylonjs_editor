@@ -14,6 +14,12 @@ function makeScene() {
     camera.inputs.attached.pointers.buttons[0] = null;
     console.log(camera);
 
+    gizmoman = new BABYLON.GizmoManager(scene);
+    gizmoman.positionGizmoEnabled = true;
+    // gizmoman.rotationGizmoEnabled = true;
+    // gizmoman.scaleGizmoEnabled = true;
+    gizmoman.attachableMeshes = [];
+
     var groundMaterial = new BABYLON.GridMaterial("groundMaterial", scene);
 	groundMaterial.majorUnitFrequency = 1;
 	groundMaterial.minorUnitVisibility = 0.1;
@@ -27,25 +33,6 @@ function makeScene() {
 	ground.material = groundMaterial;
 
     const light = new BABYLON.HemisphericLight("thelight", new BABYLON.Vector3(0,0,0), scene);
-    const box = BABYLON.MeshBuilder.CreateBox('thebox', {
-        size: 1,
-    }, scene);
-    box.rotation.x = 1;
-    box.rotation.y = 2;
-
-    const sphere = BABYLON.MeshBuilder.CreateSphere("thesphere", {
-        segments: 5,
-        diameter: 1,
-    }, scene)
-    sphere.position = new BABYLON.Vector3(5,0,0);
-    sphere.scaling.z = 2;
-
-    var gizmoman = new BABYLON.GizmoManager(scene);
-    gizmoman.positionGizmoEnabled = true;
-    // gizmoman.rotationGizmoEnabled = true;
-    // gizmoman.scaleGizmoEnabled = true;
-    gizmoman.attachableMeshes = [box, sphere];
-    console.log(gizmoman);
 
     const plane = BABYLON.MeshBuilder.CreatePlane("theplane", {}, scene);
     plane.position = new BABYLON.Vector3(-3,0,0);
@@ -63,7 +50,6 @@ function makeScene() {
     const mat = new BABYLON.StandardMaterial("themat", scene);
     mat.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
     mat.emissiveColor = new BABYLON.Color3(0, 1, 0);
-    box.material = mat;
 
     return scene;
 }
@@ -73,3 +59,28 @@ engine.runRenderLoop(() => {
     engine.resize();
     scene.render();
 });
+
+jQuery(document).ready(function($) {
+    $(".add_object").on("click", function(e){
+        object_slug = e.target.parentNode.dataset.object;
+        if(object_slug == "sphere"){
+            createSphere();
+        }
+        if(object_slug == "cube"){
+            createCube();
+        }
+        if(object_slug == "cylinder"){
+            createSphere();
+        }
+    });
+});
+
+function createSphere() {
+    const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
+    gizmoman.attachableMeshes.push(sphere);
+}
+
+function createCube() {
+    const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+    gizmoman.attachableMeshes.push(box);
+}

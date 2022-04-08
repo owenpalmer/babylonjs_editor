@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="js/vendor/resizable/resizable-style.css" />
         <script src="js/vendor/resizable/resizable.js"></script>
 
+        <script src="js/vendor/iro/iro.min.js"></script>
+
         <script src="js/vendor/jquery/jquery-3.6.0.min.js"></script>
         <script src="js/vendor/jquery/jquery-ui-1.13.1/jquery-ui.min.js"></script>
 
@@ -20,13 +22,13 @@
     <div id="main">
         <div class="resizable-left" id="left_sidebar">
             <div class="flex-container">
-                <div class="add_object">
+                <div class="add_object" data-object="cube">
                     <img class="add_object_icon" src="icons/cube.png" alt="Cube">
                 </div>
-                <div class="add_object">
+                <div class="add_object" data-object="sphere">
                     <img class="add_object_icon" src="icons/sphere.png" alt="Sphere">
                 </div>
-                <div class="add_object">
+                <div class="add_object" data-object="cylinder">
                     <img class="add_object_icon" src="icons/cylinder.png" alt="cylinder">
                 </div>
             </div>
@@ -40,6 +42,7 @@
             </div>
             <div class="resizable-right" id="right_sidebar">
                 <h1>asjdfkl</h1>
+                <div id="material_color_picker"></div>
             </div>
         </div>
     </div>

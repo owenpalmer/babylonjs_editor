@@ -6,10 +6,15 @@ jQuery(document).ready(function($) {
     var sizes = {
         "left_sidebar" : 0.2,
         "viewport" : 0.7,
-        "middle_section" : 0.8,
+        "middle_section" : 0.90,
     };
 
     Resizable.initialise("main", sizes);
+
+    var colorpicker = new iro.ColorPicker("#material_color_picker", {
+        width: 150,
+        handleRadius: 4,
+    });
 
 });
 
