@@ -31,6 +31,7 @@ html, body {
 .add_object_icon {
     width: 100%;
     height: 100%;
+    cursor: grab;
 }
 
 .contentWindow {
