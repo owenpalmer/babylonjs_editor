@@ -48,6 +48,9 @@ jQuery(document).ready(function($) {
         if(object_slug == "cylinder"){
             createCylinder();
         }
+        if(object_slug == "point_light"){
+            createPointLight();
+        }
     });
 
     $("#gizmo_options_selectable").on("click", function(e){
@@ -89,6 +92,16 @@ function createCylinder() {
     const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {}, scene);
     gizmoman.attachableMeshes.push(cylinder);
     gizmoman.attachToMesh(cylinder);
+}
+
+function createPointLight() {
+    const light_dummy = BABYLON.MeshBuilder.CreateSphere("point_light_dummy_mesh", {
+        diameter: .3,
+    }, scene);
+    const light = new BABYLON.PointLight("point_light", new BABYLON.Vector3(0,0,0), scene);
+    light.parent = light_dummy;
+    gizmoman.attachableMeshes.push(light_dummy);
+    gizmoman.attachToMesh(light_dummy);
 }
 
 function createViewportGrid(scene) {
