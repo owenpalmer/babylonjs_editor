@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
     //...
     document.getElementById("main").style.width = window.innerWidth + "px";
     document.getElementById("main").style.height = window.innerHeight + "px";
@@ -10,14 +10,10 @@ jQuery(document).ready(function() {
 
     Resizable.initialise("main", sizes);
 
-
 });
-
-function render_left_panel(id) {
-
-}
 
 window.addEventListener("resize", () => {
     Resizable.activeContentWindows[0].changeSize(window.innerWidth, window.innerHeight);
     Resizable.activeContentWindows[0].childrenResize();
 });
+
