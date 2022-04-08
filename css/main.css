@@ -24,6 +24,10 @@ html, body {
     background-color: rgb(38, 38, 38);
 }
 
+.add_object:active {
+    background-color: rgb(91, 91, 91);
+}
+
 .add_object_icon {
     width: 100%;
     height: 100%;
