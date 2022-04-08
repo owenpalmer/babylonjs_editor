@@ -37,7 +37,15 @@
             <div class="resizable-left" id="middle_section">
                 <div class="resizable-bottom" id="bottom_panel"></div>
                 <div class="resizable-top" id="viewport">
-                    <canvas id="renderCanvas" touch-action="none"></canvas>
+                    <canvas id="renderCanvas" touch-action="none">
+                    </canvas>
+                    <div id="gizmo_options">
+                        <ul id="gizmo_options_selectable">
+                            <li>Move</li>
+                            <li>Rotate</li>
+                            <li>Scale</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="resizable-right" id="right_sidebar">

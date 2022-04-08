@@ -1,5 +1,6 @@
 html, body {
     margin: 0;
+    font-family: Arial;
 }
 
 #renderCanvas {
@@ -35,4 +36,28 @@ html, body {
 
 .contentWindow {
     background-color: rgb(52, 52, 52);
+}
+
+#gizmo_options {
+    position: absolute;
+    left: 1%;
+    background-color: rgb(49, 49, 49);
+    border-radius: 3px;
+}
+
+#gizmo_options .ui-selected {
+    background-color: rgba(95, 145, 255, 0.751);
+}
+
+#gizmo_options .ui-selecting {
+    background-color: rgba(95, 145, 255, 0.751);
+}
+
+#gizmo_options_selectable li {
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin: 1px;
+    padding: 0.2em;
+    font-size: 1.2em;
+    /* height: 18px; */
 }
