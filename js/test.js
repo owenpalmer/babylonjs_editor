@@ -140,8 +140,9 @@ function createViewportGrid(scene) {
 	groundMaterial.backFaceCulling = false;
 	groundMaterial.mainColor = new BABYLON.Color3(1, 1, 1);
 	groundMaterial.lineColor = new BABYLON.Color3(1.0, 1.0, 1.0);
-	groundMaterial.opacity = 0.2;
+	groundMaterial.opacity = 0.1;
 	var ground = BABYLON.Mesh.CreateGround("ground1", 100, 100, 2, scene);
 	ground.material = groundMaterial;
+    ground.isPickable = false;
     return ground;
 }
