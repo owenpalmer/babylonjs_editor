@@ -30,11 +30,46 @@ function makeScene() {
     highlight.innerGlow = false;
     highlight.disableBoundingBoxesFromEffectLayer = false;
 
+    active_object = null;
+    parent_point = new BABYLON.Mesh("muliselected_parent_point", scene);
     actionManager = new BABYLON.ActionManager(scene);
     actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function(ev){
-        highlight.removeAllMeshes();
-        highlight.addMesh(ev.meshUnderPointer, BABYLON.Color3.Yellow());
-        gizmoman.attachToMesh(ev.meshUnderPointer);
+        // Unparent all meshes from parent point
+        for(i in highlight._meshes){
+            mesh = highlight._meshes[i].mesh;
+            mesh.setParent(null);
+        }
+        if(ev.sourceEvent.shiftKey == false){
+            // Reset all selections and add new selection
+            highlight.removeAllMeshes();
+            highlight.addMesh(ev.meshUnderPointer, BABYLON.Color3.Yellow());
+            gizmoman.attachToMesh(ev.meshUnderPointer);
+        }else{
+            // Add new selection
+            highlight.addMesh(ev.meshUnderPointer, BABYLON.Color3.Yellow());
+            number_of_selected_objects = Object.keys(highlight._meshes).length;
+            if(number_of_selected_objects > 1){
+                // Get sum of all positions of all selected meshes
+                mesh_positions = new BABYLON.Vector3();
+                for(i in highlight._meshes){
+                    mesh_positions.addInPlace(highlight._meshes[i].mesh.position);
+                }
+                divisor = new BABYLON.Vector3(
+                    number_of_selected_objects,
+                    number_of_selected_objects,
+                    number_of_selected_objects
+                );
+                // Set parent point position to median of all mesh positions
+                parent_point.position = mesh_positions.divide(divisor);
+                // Parent all meshes to parent point
+                for(i in highlight._meshes){
+                    mesh = highlight._meshes[i].mesh;
+                    mesh.setParent(parent_point);
+                }
+                gizmoman.attachToMesh(parent_point);
+            }
+        }
+        active_object = ev.meshUnderPointer;
     }));
 
     const light = new BABYLON.DirectionalLight("thelight", new BABYLON.Vector3(-1,-1,0), scene);
