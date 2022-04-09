@@ -9,7 +9,7 @@ function makeScene() {
     camera.panningInertia = 0.1;
     camera.inputs.attached.pointers.angularSensibilityX = 200;
     camera.inputs.attached.pointers.angularSensibilityY = 200;
-    camera.inputs.attached.pointers.panningSensibility = 100;
+    camera.inputs.attached.pointers.panningSensibility = 70;
     camera.inputs.attached.pointers.buttons[0] = null;
 
     gizmoman = new BABYLON.GizmoManager(scene);
