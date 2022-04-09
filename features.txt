@@ -1,0 +1,22 @@
+convert to nodejs
+    server
+    express
+    setup npm dependencies
+    setup database
+save/open scene file (json)
+undo/redo/history
+
+play game button
+    visual camera object
+    toggle go to camera view
+    performance implications?
+    hide non game objects when game is played
+    export game to html file
+
+change color of objects with iro.js
+apply textures via images searchable online
+    textures.com?
+    dedicated library of royalty free
+    texture mapping
+
+game logic window
