@@ -95,28 +95,19 @@ jQuery(document).ready(function($) {
 function createSphere() {
     const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
     gizmoman.attachableMeshes.push(sphere);
-    gizmoman.attachToMesh(sphere);
     sphere.actionManager = actionManager;
-    highlight.removeAllMeshes();
-    highlight.addMesh(sphere, BABYLON.Color3.Yellow());
 }
 
 function createCube() {
     const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
     gizmoman.attachableMeshes.push(box);
-    gizmoman.attachToMesh(box);
     box.actionManager = actionManager;
-    highlight.removeAllMeshes();
-    highlight.addMesh(box, BABYLON.Color3.Yellow());
 }
 
 function createCylinder() {
     const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {}, scene);
     gizmoman.attachableMeshes.push(cylinder);
-    gizmoman.attachToMesh(cylinder);
     cylinder.actionManager = actionManager;
-    highlight.removeAllMeshes();
-    highlight.addMesh(cylinder, BABYLON.Color3.Yellow());
 }
 
 function createPointLight() {
@@ -126,10 +117,7 @@ function createPointLight() {
     const light = new BABYLON.PointLight("point_light", new BABYLON.Vector3(0,0,0), scene);
     light.parent = light_dummy;
     gizmoman.attachableMeshes.push(light_dummy);
-    gizmoman.attachToMesh(light_dummy);
     light_dummy.actionManager = actionManager;
-    highlight.removeAllMeshes();
-    highlight.addMesh(light_dummy, BABYLON.Color3.Yellow());
 }
 
 function createViewportGrid(scene) {
