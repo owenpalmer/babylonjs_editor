@@ -16,6 +16,10 @@ jQuery(document).ready(function($) {
         handleRadius: 4,
     });
 
+    colorpicker.on("color:change", function(color) {
+        console.log(active_object);
+    });
+
 });
 
 window.addEventListener("resize", () => {

@@ -23,19 +23,19 @@
         <div class="resizable-left" id="left_sidebar">
             <h1>Mesh</h1>
             <div class="flex-container">
-                <div class="add_object" data-object="cube">
+                <div class="grid_item add_object" data-object="cube">
                     <img class="add_object_icon" src="icons/cube.png" alt="Cube">
                 </div>
-                <div class="add_object" data-object="sphere">
+                <div class="grid_item add_object" data-object="sphere">
                     <img class="add_object_icon" src="icons/sphere.png" alt="Sphere">
                 </div>
-                <div class="add_object" data-object="cylinder">
+                <div class="grid_item add_object" data-object="cylinder">
                     <img class="add_object_icon" src="icons/cylinder.png" alt="cylinder">
                 </div>
             </div>
             <h1>Lights</h1>
             <div class="flex-container">
-                <div class="add_object" data-object="point_light">
+                <div class="grid_item add_object" data-object="point_light">
                     <img class="add_object_icon" src="icons/point_light.png" alt="Point Light">
                 </div>
             </div>
@@ -56,8 +56,20 @@
                 </div>
             </div>
             <div class="resizable-right" id="right_sidebar">
-                <h1>asjdfkl</h1>
-                <div id="material_color_picker"></div>
+                <div id="materials_panel" class="resizable-top">
+                    <h1>Materials</h1>
+                    <div id="materials_grid" class="flex-container">
+                        <div class="grid_item">
+                            <img class="add_object_icon" src="https://cdn0.iconfinder.com/data/icons/ui-16px-perfect-megapack-line/16/82_Add-512.png" alt="Sphere">
+                        </div>
+                    </div>
+                </div>
+                <div id="edit_materials_panel" class="resizable-bottom">
+                    <h1>Edit Material</h1>
+                    <br><labe>Name</labe>
+                    <input id="material_name" type="text">
+                    <div class="faded" id="material_color_picker"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -11,6 +11,9 @@ function makeScene() {
     camera.inputs.attached.pointers.angularSensibilityY = 200;
     camera.inputs.attached.pointers.panningSensibility = 70;
     camera.inputs.attached.pointers.buttons[0] = null;
+    
+    defaultMaterial = new BABYLON.StandardMaterial("default", scene);
+    defaultMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
 
     gizmoman = new BABYLON.GizmoManager(scene);
     gizmoman.usePointerToAttachGizmos = false;
@@ -74,9 +77,6 @@ function makeScene() {
 
     const light = new BABYLON.DirectionalLight("thelight", new BABYLON.Vector3(-1,-1,0), scene);
 
-    const mat = new BABYLON.StandardMaterial("themat", scene);
-    mat.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
-    mat.emissiveColor = new BABYLON.Color3(0, 1, 0);
 
     return scene;
 }
@@ -125,6 +125,11 @@ jQuery(document).ready(function($) {
     });
 
     $("#gizmo_options_selectable").selectable();
+
+    for(i in scene.materials){
+        $("#materials_grid").prepend('<div class="grid_item"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
+        console.log(scene.materials[i]);
+    }
 });
 
 function createSphere() {

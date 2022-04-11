@@ -11,21 +11,20 @@ html, body {
 .flex-container {
     display: flex;
     flex-wrap: wrap;
-
 }
 
-.add_object {
+.grid_item {
     width: 70px;
     margin: 5px;
     border: 2px solid rgb(78, 77, 77);
     border-radius: 3px;
 }
 
-.add_object:hover {
+.grid_item:hover {
     background-color: rgb(38, 38, 38);
 }
 
-.add_object:active {
+.grid_item:active {
     background-color: rgb(91, 91, 91);
 }
 
