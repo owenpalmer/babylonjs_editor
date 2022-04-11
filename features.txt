@@ -1,8 +1,5 @@
-convert to nodejs
-    server
-    express
-    setup npm dependencies
-    setup database
+setup on php
+setup mysql database
 save/open scene file (json)
 undo/redo/history
 
