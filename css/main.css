@@ -79,3 +79,7 @@ html, body {
     /* height: 18px; */
     cursor: pointer;
 }
+
+#materials_panel {
+    overflow-y: auto !important;
+}

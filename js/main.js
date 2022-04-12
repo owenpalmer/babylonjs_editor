@@ -12,8 +12,10 @@ function makeScene() {
     camera.inputs.attached.pointers.panningSensibility = 70;
     camera.inputs.attached.pointers.buttons[0] = null;
     
+    selected_material = "";
     defaultMaterial = new BABYLON.StandardMaterial("default", scene);
     defaultMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
+    selected_material = defaultMaterial;
 
     gizmoman = new BABYLON.GizmoManager(scene);
     gizmoman.usePointerToAttachGizmos = false;
@@ -130,10 +132,14 @@ jQuery(document).ready(function($) {
     for(i in scene.materials){
         selected_class = "";
         if(scene.materials[i].name == "groundMaterial") continue;
-        if(scene.materials[i].name == "default") selected_class = "ui-selected";
-        $("#materials_grid").append('<div class="grid_item '+selected_class+'"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
+        if(scene.materials[i] == selected_material) selected_class = "ui-selected";
+        selected_material = $("#materials_grid").append('<div class="grid_item '+selected_class+'"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
         console.log(scene.materials[i]);
     }
+
+    $("#create_new_material").on("click", function(e){
+        createNewMaterial();
+    });
 });
 
 function createSphere() {
@@ -149,6 +155,12 @@ function createCube() {
 function createCylinder() {
     const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {}, scene);
     ApplyObjectDefaults(cylinder);
+}
+
+function createNewMaterial() {
+    $('#materials_grid .ui-selected').removeClass('ui-selected');
+    $("#materials_grid").append('<div class="grid_item ui-selected"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
+    selected_material = new BABYLON.StandardMaterial("test", scene);
 }
 
 function createPointLight() {
