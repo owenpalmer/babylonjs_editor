@@ -3,7 +3,7 @@ const engine = new BABYLON.Engine(canvas, true, { stencil: true }); // Generate 
 
 function makeScene() {
     const scene = new BABYLON.Scene(engine);
-    const camera = new BABYLON.ArcRotateCamera("thecam", 0, 0, 10, new BABYLON.Vector3(0,0,0), scene);
+    const camera = new BABYLON.ArcRotateCamera("thecam", 1, 1, 10, new BABYLON.Vector3(0,0,0), scene);
     camera.attachControl(canvas, true);
     camera.inertia = 0.1;
     camera.panningInertia = 0.1;
@@ -11,10 +11,10 @@ function makeScene() {
     camera.inputs.attached.pointers.angularSensibilityY = 200;
     camera.inputs.attached.pointers.panningSensibility = 70;
     camera.inputs.attached.pointers.buttons[0] = null;
-    
+
     selected_material = "";
     defaultMaterial = new BABYLON.StandardMaterial("default", scene);
-    defaultMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
+    defaultMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1);
     selected_material = defaultMaterial;
 
     gizmoman = new BABYLON.GizmoManager(scene);
@@ -77,13 +77,13 @@ function makeScene() {
         active_object = ev.meshUnderPointer;
     }));
 
-    const light = new BABYLON.DirectionalLight("thelight", new BABYLON.Vector3(-1,-1,0), scene);
-
 
     return scene;
 }
 
 const scene = makeScene();
+createCube();
+createPointLight(new BABYLON.Vector3(4,3,2));
 engine.runRenderLoop(() => {
     engine.resize();
     scene.render();
@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
             createCylinder();
         }
         if(object_slug == "point_light"){
-            createPointLight();
+            createPointLight(new BABYLON.Vector3());
         }
     });
 
@@ -163,11 +163,12 @@ function createNewMaterial() {
     selected_material = new BABYLON.StandardMaterial("test", scene);
 }
 
-function createPointLight() {
+function createPointLight(position) {
     const light_dummy = BABYLON.MeshBuilder.CreateSphere("point_light_dummy_mesh", {
         diameter: .3,
     }, scene);
-    const light = new BABYLON.PointLight("point_light", new BABYLON.Vector3(0,0,0), scene);
+    light_dummy.position = position;
+    const light = new BABYLON.PointLight("point_light", new BABYLON.Vector3(), scene);
     light.parent = light_dummy;
     ApplyObjectDefaults(light_dummy);
 }
