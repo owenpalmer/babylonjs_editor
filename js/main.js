@@ -128,27 +128,27 @@ jQuery(document).ready(function($) {
     $("#materials_grid").selectable();
 
     for(i in scene.materials){
-        $("#materials_grid").append('<div class="grid_item"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
+        selected_class = "";
+        if(scene.materials[i].name == "groundMaterial") continue;
+        if(scene.materials[i].name == "default") selected_class = "ui-selected";
+        $("#materials_grid").append('<div class="grid_item '+selected_class+'"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
         console.log(scene.materials[i]);
     }
 });
 
 function createSphere() {
     const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
-    gizmoman.attachableMeshes.push(sphere);
-    sphere.actionManager = actionManager;
+    ApplyObjectDefaults(sphere);
 }
 
 function createCube() {
     const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
-    gizmoman.attachableMeshes.push(box);
-    box.actionManager = actionManager;
+    ApplyObjectDefaults(box);
 }
 
 function createCylinder() {
     const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {}, scene);
-    gizmoman.attachableMeshes.push(cylinder);
-    cylinder.actionManager = actionManager;
+    ApplyObjectDefaults(cylinder);
 }
 
 function createPointLight() {
@@ -157,8 +157,13 @@ function createPointLight() {
     }, scene);
     const light = new BABYLON.PointLight("point_light", new BABYLON.Vector3(0,0,0), scene);
     light.parent = light_dummy;
-    gizmoman.attachableMeshes.push(light_dummy);
-    light_dummy.actionManager = actionManager;
+    ApplyObjectDefaults(light_dummy);
+}
+
+function ApplyObjectDefaults(mesh) {
+    gizmoman.attachableMeshes.push(mesh);
+    mesh.actionManager = actionManager;
+    mesh.material = defaultMaterial;
 }
 
 function createViewportGrid(scene) {
