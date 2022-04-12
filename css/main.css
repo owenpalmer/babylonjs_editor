@@ -61,3 +61,21 @@ html, body {
     /* height: 18px; */
     cursor: pointer;
 }
+
+#materials_grid .ui-selected {
+    background-color: rgba(95, 145, 255, 0.751);
+}
+
+#materials_grid .ui-selecting {
+    background-color: rgba(95, 145, 255, 0.751);
+}
+
+#materials_grid .material_list_item {
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin: 1px;
+    padding: 0.2em;
+    font-size: 1.2em;
+    /* height: 18px; */
+    cursor: pointer;
+}

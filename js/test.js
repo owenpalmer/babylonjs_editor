@@ -125,9 +125,10 @@ jQuery(document).ready(function($) {
     });
 
     $("#gizmo_options_selectable").selectable();
+    $("#materials_grid").selectable();
 
     for(i in scene.materials){
-        $("#materials_grid").prepend('<div class="grid_item"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
+        $("#materials_grid").append('<div class="grid_item"><img class="add_object_icon" src="icons/sphere.png" alt="Sphere"></div>');
         console.log(scene.materials[i]);
     }
 });
